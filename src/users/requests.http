@@ -1,0 +1,25 @@
+POST http://localhost:8000/auth/signup
+content-type: application/json
+
+{
+    "email":"abc@gmail.com",
+    "password":"abcxyz"
+}
+
+### Find specific user
+DELETE http://localhost:8000/auth/2
+
+### Find all users
+GET http://localhost:8000/auth?email=isauravshing@gmail.com
+
+### Delete specific user
+DELETE http://localhost:8000/auth/1
+
+### Update user
+PATCH http://localhost:8000/auth/1
+content-type: application/json 
+
+{
+    "email":"abc@ymail.com",
+    "password":"test123"
+}
