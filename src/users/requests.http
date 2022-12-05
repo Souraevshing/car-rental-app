@@ -10,7 +10,7 @@ content-type: application/json
 DELETE http://localhost:8000/auth/2
 
 ### Find all users
-GET http://localhost:8000/auth?email=isauravshing@gmail.com
+GET http://localhost:8000/auth/3
 
 ### Delete specific user
 DELETE http://localhost:8000/auth/1
