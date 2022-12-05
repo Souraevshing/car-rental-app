@@ -1,19 +1,35 @@
+### Create user
 POST http://localhost:8000/auth/signup
 content-type: application/json
 
 {
-    "email":"abc@gmail.com",
-    "password":"abcxyz"
+    "email":"demo@demo.com",
+    "password":"test123"
 }
 
+### Signin user
+POST http://localhost:8000/auth/signin
+content-type: application/json
+
+{
+    "email":"demo@demo.com",
+    "password":"test123"
+}
+
+### Signout user
+POST http://localhost:8000/auth/signout
+
+### Get current user
+GET http://localhost:8000/auth/whoAmI
+
 ### Find specific user
-DELETE http://localhost:8000/auth/2
+DELETE http://localhost:8000/auth/8
 
 ### Find all users
-GET http://localhost:8000/auth/3
+GET http://localhost:8000/auth
 
 ### Delete specific user
-DELETE http://localhost:8000/auth/1
+DELETE http://localhost:8000/auth/8
 
 ### Update user
 PATCH http://localhost:8000/auth/1
