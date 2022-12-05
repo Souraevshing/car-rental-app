@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
+const auth_guard_1 = require("../guards/auth.guard");
 const serialize_interceptor_1 = require("../interceptors/serialize-interceptor");
 const auth_service_1 = require("./auth.service");
 const current_user_decorator_1 = require("./decorator/current-user.decorator");
@@ -58,6 +59,7 @@ let UsersController = class UsersController {
 };
 __decorate([
     (0, common_1.Get)('/whoAmI'),
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     __param(0, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_entity_1.User]),
