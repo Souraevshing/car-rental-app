@@ -1,5 +1,5 @@
-import { NestInterceptor, CallHandler, ExecutionContext } from '@nestjs/common';
-import { UsersService } from '../users.service';
+import { NestInterceptor, CallHandler, ExecutionContext } from "@nestjs/common";
+import { UsersService } from "../users.service";
 export declare class CurrentUserInterceptor implements NestInterceptor {
     private usersService;
     constructor(usersService: UsersService);

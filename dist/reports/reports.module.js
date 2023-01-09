@@ -18,7 +18,7 @@ ReportsModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([report_entity_1.Report])],
         controllers: [reports_controller_1.ReportsController],
-        providers: [reports_service_1.ReportsService]
+        providers: [reports_service_1.ReportsService],
     })
 ], ReportsModule);
 exports.ReportsModule = ReportsModule;

@@ -58,7 +58,7 @@ let UsersController = class UsersController {
     }
 };
 __decorate([
-    (0, common_1.Get)('/whoAmI'),
+    (0, common_1.Get)("/whoAmI"),
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     __param(0, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -66,14 +66,14 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "whoAmI", null);
 __decorate([
-    (0, common_1.Post)('/signout'),
+    (0, common_1.Post)("/signout"),
     __param(0, (0, common_1.Session)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "signOut", null);
 __decorate([
-    (0, common_1.Post)('/signup'),
+    (0, common_1.Post)("/signup"),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Session)()),
     __metadata("design:type", Function),
@@ -81,7 +81,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "createUser", null);
 __decorate([
-    (0, common_1.Post)('/signin'),
+    (0, common_1.Post)("/signin"),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Session)()),
     __metadata("design:type", Function),
@@ -89,36 +89,36 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "signIn", null);
 __decorate([
-    (0, common_1.Get)('/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)("/:id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findUser", null);
 __decorate([
     (0, common_1.Get)(),
-    __param(0, (0, common_1.Query)('email')),
+    __param(0, (0, common_1.Query)("email")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAllUsers", null);
 __decorate([
-    (0, common_1.Delete)('/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)("/:id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "removeUser", null);
 __decorate([
-    (0, common_1.Patch)('/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Patch)("/:id"),
+    __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "updateUser", null);
 UsersController = __decorate([
-    (0, common_1.Controller)('auth'),
+    (0, common_1.Controller)("auth"),
     (0, serialize_interceptor_1.Serialize)(user_dto_1.UserDto),
     __metadata("design:paramtypes", [users_service_1.UsersService,
         auth_service_1.AuthService])
