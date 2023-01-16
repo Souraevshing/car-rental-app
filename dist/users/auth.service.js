@@ -22,25 +22,27 @@ let AuthService = class AuthService {
     async signUp(email, password) {
         const user = await this.usersService.find(email);
         if (user.length) {
-            throw new common_1.BadRequestException("Email already in use");
+            throw new common_1.BadRequestException('Email already in use');
         }
-        const salt = (0, crypto_1.randomBytes)(8).toString("hex");
+        const salt = (0, crypto_1.randomBytes)(8).toString('hex');
         const hash = (await scrypt(password, salt, 32));
-        const result = `${salt}.${hash.toString("hex")}`;
+        const result = `${salt}.${hash.toString('hex')}`;
         const users = await this.usersService.create(email, result);
         return users;
     }
     async signIn(email, password) {
         const [user] = await this.usersService.find(email);
         if (!user) {
-            throw new common_1.NotFoundException("User not found");
+            throw new common_1.NotFoundException('User not found');
         }
-        const [salt, hashedPassword] = user.password.split(".");
+        const [salt, hashedPassword] = user.password.split('.');
         const hash = (await scrypt(password, salt, 32));
-        if (hashedPassword !== hash.toString("hex")) {
-            throw new common_1.BadRequestException("Wrong credentials");
+        if (hashedPassword === hash.toString('hex')) {
+            return user;
         }
-        return user;
+        else {
+            throw new common_1.BadRequestException('Wrong credentials');
+        }
     }
 };
 AuthService = __decorate([

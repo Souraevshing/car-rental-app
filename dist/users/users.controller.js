@@ -21,6 +21,7 @@ const current_user_decorator_1 = require("./decorator/current-user.decorator");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
 const user_dto_1 = require("./dto/user-dto");
+const current_user_interceptor_1 = require("./interceptors/current-user.interceptor");
 const user_entity_1 = require("./user.entity");
 const users_service_1 = require("./users.service");
 let UsersController = class UsersController {
@@ -44,8 +45,12 @@ let UsersController = class UsersController {
         session.userId = user.id;
         return user;
     }
-    findUser(id) {
-        return this.usersService.findOne(parseInt(id));
+    async findUser(id) {
+        const user = await this.usersService.findOne(parseInt(id));
+        if (!user) {
+            throw new common_1.NotFoundException('User not found');
+        }
+        return user;
     }
     findAllUsers(email) {
         return this.usersService.find(email);
@@ -58,7 +63,7 @@ let UsersController = class UsersController {
     }
 };
 __decorate([
-    (0, common_1.Get)("/whoAmI"),
+    (0, common_1.Get)('/whoami'),
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     __param(0, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -66,14 +71,14 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "whoAmI", null);
 __decorate([
-    (0, common_1.Post)("/signout"),
+    (0, common_1.Post)('/signout'),
     __param(0, (0, common_1.Session)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "signOut", null);
 __decorate([
-    (0, common_1.Post)("/signup"),
+    (0, common_1.Post)('/signup'),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Session)()),
     __metadata("design:type", Function),
@@ -81,7 +86,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "createUser", null);
 __decorate([
-    (0, common_1.Post)("/signin"),
+    (0, common_1.Post)('/signin'),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Session)()),
     __metadata("design:type", Function),
@@ -89,37 +94,38 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "signIn", null);
 __decorate([
-    (0, common_1.Get)("/:id"),
-    __param(0, (0, common_1.Param)("id")),
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "findUser", null);
 __decorate([
     (0, common_1.Get)(),
-    __param(0, (0, common_1.Query)("email")),
+    __param(0, (0, common_1.Query)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAllUsers", null);
 __decorate([
-    (0, common_1.Delete)("/:id"),
-    __param(0, (0, common_1.Param)("id")),
+    (0, common_1.Delete)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "removeUser", null);
 __decorate([
-    (0, common_1.Patch)("/:id"),
-    __param(0, (0, common_1.Param)("id")),
+    (0, common_1.Patch)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "updateUser", null);
 UsersController = __decorate([
-    (0, common_1.Controller)("auth"),
+    (0, common_1.Controller)('auth'),
     (0, serialize_interceptor_1.Serialize)(user_dto_1.UserDto),
+    (0, common_1.UseInterceptors)(current_user_interceptor_1.CurrentUserInterceptor),
     __metadata("design:paramtypes", [users_service_1.UsersService,
         auth_service_1.AuthService])
 ], UsersController);

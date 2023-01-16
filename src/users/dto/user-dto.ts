@@ -1,12 +1,13 @@
-import { Expose, Exclude } from "class-transformer";
+/**
+ * Defining what all data to be sent to the server
+ */
+
+import { Expose, Exclude } from 'class-transformer'
 
 export class UserDto {
   @Expose()
-  id: number;
+  id: number
 
   @Expose()
-  email: string;
-
-  @Exclude()
-  password: string;
+  email: string
 }

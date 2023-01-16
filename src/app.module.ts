@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common'
+import { Module, ValidationPipe } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { ConfigService, ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module'
 import { ReportsModule } from './reports/reports.module'
 import { User } from './users/user.entity'
 import { Report } from './reports/report.entity'
+import { APP_PIPE } from '@nestjs/core'
 
 @Module({
   imports: [
@@ -14,27 +15,19 @@ import { Report } from './reports/report.entity'
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
-    TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => {
-        return {
-          type: 'sqlite',
-          database: 'db.sqlite',
-          synchronize: true,
-          entities: [User, Report],
-        }
-      },
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'db.sqlite',
+      synchronize: true,
+      entities: [User, Report],
     }),
-    // TypeOrmModule.forRoot({
-    //   type: 'sqlite',
-    //   database: 'db.sqlite',
-    //   entities: [User, Report],
-    //   synchronize: true,
-    // }),
     UsersModule,
     ReportsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    { provide: APP_PIPE, useValue: new ValidationPipe({ whitelist: true }) },
+  ],
 })
 export class AppModule {}

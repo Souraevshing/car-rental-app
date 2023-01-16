@@ -1,8 +1,8 @@
-import { AuthService } from "./auth.service";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
-import { User } from "./user.entity";
-import { UsersService } from "./users.service";
+import { AuthService } from './auth.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './user.entity';
+import { UsersService } from './users.service';
 export declare class UsersController {
     private usersService;
     private authService;

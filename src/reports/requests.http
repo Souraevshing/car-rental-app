@@ -1,0 +1,23 @@
+### Create new report
+
+POST http://localhost:8000/reports
+content-type: application/json
+
+{
+"make":"ciaz",
+"model":"honda",
+"year":2000,
+"mileage":1000,
+"lng":0,
+"lat":0,
+"price":100000
+}
+
+### Approve admin to add report
+
+PATCH http://localhost:8000/reports/1
+content-type: application/json
+
+{
+    "approved":true
+}
