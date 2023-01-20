@@ -15,13 +15,13 @@ export class CreateReportDto {
   model: string
 
   @IsNumber()
-  @Min(1999)
-  @Max(2023)
+  @Min(1900)
+  @Max(2030)
   year: string
 
   @IsNumber()
   @Min(0)
-  @Max(1000)
+  @Max(999999)
   mileage: number
 
   @IsLongitude()
@@ -32,6 +32,6 @@ export class CreateReportDto {
 
   @IsNumber()
   @Min(0)
-  @Max(100000)
+  @Max(999999)
   price: number
 }

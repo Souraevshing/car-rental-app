@@ -23,6 +23,7 @@ const serialize_interceptor_1 = require("../interceptors/serialize-interceptor")
 const report_dto_1 = require("./dto/report.dto");
 const approve_report_dto_1 = require("./dto/approve-report.dto");
 const admin_guard_1 = require("../guards/admin.guard");
+const get_estimate_dto_1 = require("./dto/get-estimate.dto");
 let ReportsController = class ReportsController {
     constructor(reportsService) {
         this.reportsService = reportsService;
@@ -32,6 +33,9 @@ let ReportsController = class ReportsController {
     }
     approveReport(id, body) {
         return this.reportsService.changeApproval(id, body.approved);
+    }
+    getEstimate(query) {
+        return this.reportsService.createEstimate(query);
     }
 };
 __decorate([
@@ -53,6 +57,13 @@ __decorate([
     __metadata("design:paramtypes", [String, approve_report_dto_1.ApproveReportDto]),
     __metadata("design:returntype", void 0)
 ], ReportsController.prototype, "approveReport", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [get_estimate_dto_1.GetEstimateDto]),
+    __metadata("design:returntype", void 0)
+], ReportsController.prototype, "getEstimate", null);
 ReportsController = __decorate([
     (0, common_1.Controller)('reports'),
     __metadata("design:paramtypes", [reports_service_1.ReportsService])

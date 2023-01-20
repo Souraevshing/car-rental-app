@@ -23,14 +23,14 @@ __decorate([
 ], CreateReportDto.prototype, "model", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.Min)(1999),
-    (0, class_validator_1.Max)(2023),
+    (0, class_validator_1.Min)(1900),
+    (0, class_validator_1.Max)(2030),
     __metadata("design:type", String)
 ], CreateReportDto.prototype, "year", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.Min)(0),
-    (0, class_validator_1.Max)(1000),
+    (0, class_validator_1.Max)(999999),
     __metadata("design:type", Number)
 ], CreateReportDto.prototype, "mileage", void 0);
 __decorate([
@@ -44,7 +44,7 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.Min)(0),
-    (0, class_validator_1.Max)(100000),
+    (0, class_validator_1.Max)(999999),
     __metadata("design:type", Number)
 ], CreateReportDto.prototype, "price", void 0);
 exports.CreateReportDto = CreateReportDto;

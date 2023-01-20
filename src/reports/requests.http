@@ -21,3 +21,7 @@ content-type: application/json
 {
     "approved":true
 }
+
+### Get estimated report
+
+GET http://localhost:8000/reports?make=ciaz&model=honda&lng=0&lat=0&mileage=1000&year=2000
